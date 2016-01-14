@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Created by YB on 13.01.2016.
@@ -6,44 +7,19 @@ import java.util.ArrayList;
 
 // OBSERVABLE
                                    // observable
-public class Newspaper implements Subscriable {
+public class Newspaper extends Observable {
 
     private String name = null;
-
-    private ArrayList<User> subscribers = new ArrayList<User>();
-
-    private boolean isIssuedNewEdition = false;
-
-    public boolean isIssuedNewEdition() {
-        return isIssuedNewEdition;
-    }
 
     Newspaper (String name) {
         this.name = name;
     }
 
-    public void setIssuedNewEdition(boolean isIssuedNewEdition) {
-        this.isIssuedNewEdition = isIssuedNewEdition;
-        if (isIssuedNewEdition == true) {
-            notifyAboutIssueOfNewEdition();
-        }
-    }
-
     @Override
-    public void addSubscriber(User s) {
-        subscribers.add(s);
-    }
-
-    @Override
-    public void removeSubscriber(User s) {
-        subscribers.remove(s);
-    }
-
-    @Override
-    public void notifyAboutIssueOfNewEdition() {
-        for (User subscriber : subscribers) {
-            System.out.print(name);
-            subscriber.update();
-        }
+    public void notifyObservers() {
+        setChanged();
+        super.notifyObservers();
+        System.out.println("Newspaper Notify Observers!!!");
     }
 }
+

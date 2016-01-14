@@ -27,8 +27,9 @@ public class Demo {
         timesSubscriber7.subscribe();
         timesSubscriber8.subscribe();
 
-        times.setIssuedNewEdition(true);
-        forbes.setIssuedNewEdition(true);
+
+        times.notifyObservers();
+        forbes.notifyObservers();
 
         System.out.println("=========Unsubscribe Oleg and Olga - Times========");
 
@@ -40,7 +41,7 @@ public class Demo {
         timesSubscriber6.unsubscribe();
         timesSubscriber7.unsubscribe();
 
-        times.setIssuedNewEdition(true);
-        forbes.setIssuedNewEdition(true);
+        times.notifyObservers();
+        forbes.notifyObservers();
     }
 }
